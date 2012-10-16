@@ -1,0 +1,3 @@
+/build
+/otx.xcodeproj/*
+!/otx.xcodeproj/project.*
