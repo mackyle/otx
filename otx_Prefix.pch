@@ -4,13 +4,60 @@
     This file is in the public domain.
 */
 
+#include <AvailabilityMacros.h>
+
+#ifndef MAC_OS_X_VERSION_10_4
+#define MAC_OS_X_VERSION_10_4 1040
+#endif
+
+#ifndef MAC_OS_X_VERSION_10_5
+#define MAC_OS_X_VERSION_10_5 1050
+#endif
+
+#ifndef MAC_OS_X_VERSION_10_6
+#define MAC_OS_X_VERSION_10_6 1060
+#endif
+
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
+    #import <ApplicationServices/ApplicationServices.h>
     extern BOOL gCancel;
+
+    #if MAC_OS_X_VERSION_MAX_ALLOWED < MAC_OS_X_VERSION_10_5
+        #ifndef CGFLOAT_DEFINED
+            #ifdef __LP64__
+                typedef long NSInteger;
+                typedef unsigned long NSUInteger;
+                typedef double CGFloat;
+            #else
+                typedef int NSInteger;
+                typedef unsigned int NSUInteger;
+                typedef float CGFloat;
+            #endif
+        #endif
+        typedef NSInteger NSBackgroundStyle;
+        enum {
+           NSBackgroundStyleLight = 0,
+           NSBackgroundStyleDark,
+           NSBackgroundStyleRaised,
+           NSBackgroundStyleLowered
+        };
+        @interface NSWindow (compat_10_4)
+            - (void)setAutorecalculatesContentBorderThickness:(BOOL)b forEdge:(NSRectEdge)e;
+            - (void)setContentBorderThickness:(CGFloat)borderThickness forEdge:(NSRectEdge)e;
+        @end
+        @interface NSCell (compat_10_4)
+            - (void)setBackgroundStyle:(NSBackgroundStyle)style;
+        @end
+    #endif
 #endif
 
 #ifndef NSAppKitVersionNumber10_4
     #define NSAppKitVersionNumber10_4 824
+#endif
+
+#ifndef NSAppKitVersionNumber10_5
+    #define NSAppKitVersionNumber10_5 949
 #endif
 
 #ifndef NSAppKitVersionNumber10_6

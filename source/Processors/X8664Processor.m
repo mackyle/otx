@@ -458,7 +458,7 @@
                             *iRegInfos[XREG2(modRM, rexByte)].classPtr;
 
                         #if __BIG_ENDIAN__
-                            swap_objc_class((objc_class *)&swappedClass);
+                            swap_objc2_64_class(&swappedClass);
                         #endif
 
                         if (!iIsInstanceMethod)
@@ -467,7 +467,7 @@
                                 break;
 
                             #if __BIG_ENDIAN__
-                                swap_objc_class((objc_class *)&swappedClass);
+                                swap_objc2_64_class(&swappedClass);
                             #endif
                         }
 
@@ -656,7 +656,7 @@
                         *iRegInfos[XREG2(modRM, rexByte)].classPtr;
 
                     #if __BIG_ENDIAN__
-                        swap_objc_class((objc_class *)&swappedClass);
+                        swap_objc2_64_class(&swappedClass);
                     #endif
 
                     if (!iIsInstanceMethod)
@@ -665,7 +665,7 @@
                             break;
 
                         #if __BIG_ENDIAN__
-                            swap_objc_class((objc_class *)&swappedClass);
+                            swap_objc2_64_class(&swappedClass);
                         #endif
                     }
 
@@ -813,7 +813,7 @@
                         *iRegInfos[XREG2(modRM, rexByte)].classPtr;
 
                     #if __BIG_ENDIAN__
-                        swap_objc_class((objc_class *)&swappedClass);
+                        swap_objc2_64_class(&swappedClass);
                     #endif
 
                     if (!iIsInstanceMethod)
@@ -822,7 +822,7 @@
                             break;
 
                         #if __BIG_ENDIAN__
-                            swap_objc_class((objc_class *)&swappedClass);
+                            swap_objc2_64_class(&swappedClass);
                         #endif
                     }
 
@@ -953,7 +953,7 @@
                         *iRegInfos[XREG2(modRM, rexByte)].classPtr;
 
                     #if __BIG_ENDIAN__
-                        swap_objc_class((objc_class *)&swappedClass);
+                        swap_objc2_64_class(&swappedClass);
                     #endif
 
                     if (!iIsInstanceMethod)
@@ -962,7 +962,7 @@
                             break;
 
                         #if __BIG_ENDIAN__
-                            swap_objc_class((objc_class *)&swappedClass);
+                            swap_objc2_64_class(&swappedClass);
                         #endif
                     }
 
@@ -1463,7 +1463,7 @@
                     return;
 
                 #if __BIG_ENDIAN__
-                    swap_objc_class((objc_class *)&swappedClass);
+                    swap_objc2_64_class(&swappedClass);
                 #endif
             }
 

@@ -357,6 +357,7 @@
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "otx gui" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
+				279A0EB7162DA0630017E61F /* Sanitize Info.plist */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 			);
@@ -431,6 +432,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		279A0EB7162DA0630017E61F /* Sanitize Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = "Sanitize Info.plist";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/$(FULL_PRODUCT_NAME).sanitized",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n# Both of the check boxes (\"Show environment variables in build log\" and\n# \"Run script only when installing\") should be OFF (unchecked).\n#\n# Input Files should be set to:\n#  $(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)\n#\n# Output Files should be set to:\n#  $(DERIVED_FILE_DIR)/$(FULL_PRODUCT_NAME).sanitized\n#\n# This script should be added to the target as a new \"Run Script Build Phase\"\n# which is AFTER the \"Copy Bundle Resources\" step -- making it the last build\n# phase is good.  Name it something like \"Sanitize Info.plist\"\n#\n\nGARBAGEKEYS=\"\n  BuildMachineOSBuild DTCompiler DTPlatformBuild DTPlatformVersion DTSDKBuild\n  DTSDKName DTXcode DTXcodeBuild\n\"\n\ndf=/usr/bin/defaults\npl=/usr/bin/plutil\ncm=/bin/chmod\n\ndn=\"$(dirname \"$SCRIPT_INPUT_FILE_0\")\"\nbn=\"$(basename -s .plist \"$SCRIPT_INPUT_FILE_0\")\"\n\ndn=\"$(cd \"$dn\" && pwd -P)\"\n\ndn=\"$dn/$bn\"\nfn=\"$dn.plist\"\nst=\"$dn.stamp\"\n\nif [ -w \"$fn\" ]; then\n  touch -r \"$fn\" \"$SCRIPT_OUTPUT_FILE_0\"\n  for garbage in $GARBAGEKEYS; do\n    \"$df\" delete \"$dn\" \"$garbage\" 2>/dev/null || :\n  done\n  \"$pl\" -convert xml1 \"$fn\"\n  \"$cm\" a+r \"$fn\"\n  touch -r \"$SCRIPT_OUTPUT_FILE_0\" \"$fn\"\n  touch \"$SCRIPT_OUTPUT_FILE_0\"\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -525,10 +546,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
-				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PREFIX_HEADER = otx_Prefix.pch;
@@ -542,10 +559,6 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks\"",
-				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -562,7 +575,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREFIX_HEADER = otx_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = OTX_DEBUG;
@@ -574,9 +587,16 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_ppc64 = 10.5;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = "";
 				WARNING_CFLAGS = "-wall";
+				zGCC_VERSION_i386 = 4.0;
+				zGCC_VERSION_ppc = 4.0;
+				zSDKROOT_i386 = macosx10.4;
+				zSDKROOT_ppc = macosx10.4;
 			};
 			name = Debug;
 		};
@@ -585,7 +605,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREFIX_HEADER = otx_Prefix.pch;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
@@ -595,8 +615,14 @@
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				SDKROOT = macosx;
+				MACOSX_DEPLOYMENT_TARGET = 10.4;
+				MACOSX_DEPLOYMENT_TARGET_ppc64 = 10.5;
+				MACOSX_DEPLOYMENT_TARGET_x86_64 = 10.5;
+				SDKROOT = "";
+				zGCC_VERSION_i386 = 4.0;
+				zGCC_VERSION_ppc = 4.0;
+				zSDKROOT_i386 = macosx10.4;
+				zSDKROOT_ppc = macosx10.4;
 			};
 			name = Release;
 		};

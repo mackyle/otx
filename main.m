@@ -27,7 +27,8 @@ int main(
     int result  = 1;
 
 #ifdef OTX_CLI
-    @autoreleasepool {
+    {
+        NSAutoreleasePool*  pool        = [NSAutoreleasePool new];
         CLIController*      controller  =
         [[CLIController alloc] initWithArgs: argv count: argc];
 
@@ -38,6 +39,8 @@ int main(
         }
         else
             result  = -1;
+
+        [pool drain];
     }
 #else
     result  = NSApplicationMain(argc, (const char**)argv);

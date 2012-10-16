@@ -472,7 +472,7 @@
                         break;
 
                     objc_32_class_ptr classPtr = iRegInfos[REG2(modRM)].classPtr;
-                    uint32 offset = 0;
+                    uint32_t offset = 0;
 
                     if (MOD(modRM) == MOD8)
                     {
@@ -543,11 +543,11 @@
                     break;
 
                 objc_32_class_ptr classPtr = iRegInfos[REG2(modRM)].classPtr;
-                uint32 offset = 0;
+                uint32_t offset = 0;
 
                 if (MOD(modRM) == MOD8)
                 {
-                    offset = (sint8)inLine->info.code[2];
+                    offset = (int8_t)inLine->info.code[2];
                 }
                 else if (MOD(modRM) == MOD32)
                 {
@@ -813,7 +813,7 @@
                     break;
 
                 objc_32_class_ptr classPtr = iRegInfos[REG2(modRM)].classPtr;
-                uint32 offset = 0;
+                uint32_t offset = 0;
 
                 if (MOD(modRM) == MOD8)
                 {
@@ -931,7 +931,7 @@
                     break;
 
                 objc_32_class_ptr classPtr = iRegInfos[REG2(modRM)].classPtr;
-                uint32 offset = 0;
+                uint32_t offset = 0;
 
                 if (MOD(modRM) == MOD8)
                 {
@@ -2705,7 +2705,7 @@
     }
 
     NSDictionary*   permsDict   = [NSDictionary dictionaryWithObjectsAndKeys:
-        [NSNumber numberWithUnsignedInteger: [fileAttrs filePosixPermissions]],
+        [NSNumber numberWithUnsignedInt: [fileAttrs filePosixPermissions]],
         NSFilePosixPermissions, nil];
 
     if (![fileMan changeFileAttributes: permsDict atPath: [newURL path]])

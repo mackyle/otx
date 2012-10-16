@@ -73,7 +73,11 @@ CPUID;
 
 // ============================================================================
 
+#if MAC_OS_X_VERSION_MIN_REQUIRED < MAC_OS_X_VERSION_10_6
+@interface AppController : NSObject<ProgressReporter, ErrorReporter>
+#else
 @interface AppController : NSObject<ProgressReporter, ErrorReporter, NSAnimationDelegate, NSToolbarDelegate>
+#endif
 {
 @private
 // main window
