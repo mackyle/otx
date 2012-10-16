@@ -305,7 +305,7 @@
         "\t-c             don't show md5 checksum\n"
         "\t-C             don't show binary code\n"
         "\t-d             show data sections\n"
-        "\t-e             don't entab output\n"
+        "\t-e             entab output\n"
         "\t-l             don't show local offsets\n"
         "\t-m             don't show verbose objc_msgSend\n"
         "\t-n             don't demangle C++ symbol names\n"
