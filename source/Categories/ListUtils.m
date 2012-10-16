@@ -7,6 +7,7 @@
 */
 
 #import <Cocoa/Cocoa.h>
+#import <unistd.h>
 
 #import "ListUtils.h"
 
@@ -117,7 +118,7 @@
 
     while (theLine)
     {
-        if (syscall(SYS_write, fileNum, theLine->chars, theLine->length) == -1)
+        if (write(fileNum, theLine->chars, theLine->length) == -1)
         {
             perror("otx: unable to write to output file");
 
