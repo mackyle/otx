@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 45;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -104,7 +104,7 @@
 		25A62EFB0C38A7C500B08D38 /* Prefs General Icon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Prefs General Icon.tif"; path = "images/Prefs General Icon.tif"; sourceTree = "<group>"; };
 		25A62EFC0C38A7C500B08D38 /* Main Window Background.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = "Main Window Background.tif"; path = "images/Main Window Background.tif"; sourceTree = "<group>"; };
 		25A62F050C38A86C00B08D38 /* App Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "App Icon.icns"; path = "images/App Icon.icns"; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		29B97319FDCFA39411CA2CEA /* en */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = en; path = en.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* otx_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = otx_Prefix.pch; sourceTree = "<group>"; };
@@ -118,7 +118,7 @@
 		E145F6D10B437F5900615A16 /* SmoothViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SmoothViewAnimation.h; path = source/SmoothViewAnimation.h; sourceTree = "<group>"; };
 		E145F6D20B437F5900615A16 /* SmoothViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SmoothViewAnimation.m; path = source/SmoothViewAnimation.m; sourceTree = "<group>"; };
 		E182007009AE4CD800584B07 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = AppController.m; path = source/AppController.m; sourceTree = "<group>"; wrapsLines = 0; };
-		E1978C6B0AC603A40096EE62 /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = English.lproj/Help; sourceTree = "<group>"; };
+		E1978C6B0AC603A40096EE62 /* en */ = {isa = PBXFileReference; lastKnownFileType = folder; name = en; path = en.lproj/Help; sourceTree = "<group>"; };
 		E1AD98A40B57311B00E56D96 /* DropBox.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = DropBox.h; path = source/DropBox.h; sourceTree = "<group>"; };
 		E1AD98A50B57311B00E56D96 /* DropBox.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = DropBox.m; path = source/DropBox.m; sourceTree = "<group>"; };
 		E1B1316E0B17EF84002EB674 /* SystemIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemIncludes.h; path = source/SystemIncludes.h; sourceTree = "<group>"; };
@@ -395,14 +395,15 @@
 				LastUpgradeCheck = 0420;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "otx" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
 				Japanese,
 				French,
 				German,
+				en,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* otx */;
 			projectDirPath = "";
@@ -502,7 +503,7 @@
 		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
+				29B97319FDCFA39411CA2CEA /* en */,
 			);
 			name = MainMenu.nib;
 			sourceTree = "<group>";
@@ -510,7 +511,7 @@
 		E1978C6A0AC603A40096EE62 /* Help */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E1978C6B0AC603A40096EE62 /* English */,
+				E1978C6B0AC603A40096EE62 /* en */,
 			);
 			name = Help;
 			sourceTree = "<group>";
