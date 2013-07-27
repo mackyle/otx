@@ -2514,6 +2514,10 @@
     unsigned char   searchString[4] = {0x00, 0x55, 0x89, 0xe5};
 
     *outFound   = 0;
+    
+    if (inHaystack == NULL) {
+        return foundList;
+    }
 
     // Loop thru haystack
     for (current = inHaystack;
