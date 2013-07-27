@@ -17,7 +17,7 @@
 
 - (BOOL)checkOtool: (NSString*)filePath
 {
-    NSString* otoolPath = [self pathForTool: @"otool"];
+    NSString* otoolPath = [self searchForCommand:@"otool" additonalPaths:[NSArray arrayWithObject:[self pathForXcodeTools]]];
     NSTask* otoolTask = [[[NSTask alloc] init] autorelease];
     NSPipe* silence = [NSPipe pipe];
 
@@ -33,12 +33,43 @@
 
 //  pathForTool:
 // ----------------------------------------------------------------------------
-
 - (NSString*)pathForTool: (NSString*)toolName
+{
+    return [self searchForCommand:toolName
+                   additonalPaths:[NSArray arrayWithObject:[self pathForXcodeTools]]];
+}
+
+- (NSString*) searchForCommand: (NSString*)command additonalPaths:(NSArray*)additionalPaths
+{
+    NSString* commandPath = nil;
+    
+    if ( ![ command isAbsolutePath ] ) {
+            // Next, search the PATH enviornment variable for the script
+            const char* pathEnv = getenv("PATH");
+            NSString* pathStr   = [ NSString stringWithCString: pathEnv encoding: NSUTF8StringEncoding ];
+            NSMutableArray* paths = [ NSMutableArray arrayWithArray:[ pathStr componentsSeparatedByString: @":" ]];
+        if (additionalPaths != nil) {
+            [ paths addObjectsFromArray:additionalPaths];
+        }
+            NSFileManager* fileManager = [ [ NSFileManager alloc ] init ];
+            
+            for ( NSString* path in paths ) {
+                NSString* absPath = [ path stringByAppendingPathComponent: command ];
+                
+                if ( [ fileManager fileExistsAtPath: absPath ] ) {
+                    commandPath = absPath;
+                    break;
+                }
+            }
+    }
+    
+    return commandPath;
+}
+
+- (NSString*)pathForXcodeTools
 {
     NSString* relToolBase = [NSString pathWithComponents:
         [NSArray arrayWithObjects: @"/", @"usr", @"bin", nil]];
-    NSString* relToolPath = [relToolBase stringByAppendingPathComponent: toolName];
     NSString* selectToolPath = [relToolBase stringByAppendingPathComponent: @"xcode-select"];
     NSTask* selectTask = [[[NSTask alloc] init] autorelease];
     NSPipe* selectPipe = [NSPipe pipe];
@@ -53,17 +84,16 @@
 
     int selectStatus = [selectTask terminationStatus];
 
-    if (selectStatus == -1)
-        return relToolPath;
+    if (selectStatus == -1) {
+        return nil;
+    }
 
     NSData* selectData = [[selectPipe fileHandleForReading] availableData];
     NSString* absToolPath = [[[NSString alloc] initWithBytes: [selectData bytes]
                                                       length: [selectData length]
                                                     encoding: NSUTF8StringEncoding] autorelease];
 
-    return [[absToolPath stringByTrimmingCharactersInSet:
-        [NSCharacterSet whitespaceAndNewlineCharacterSet]]
-        stringByAppendingPathComponent: relToolPath];
+    return [absToolPath stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 @end
