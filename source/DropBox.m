@@ -95,7 +95,7 @@
 
     if (borderType < 0 || borderType > 3)
     {
-        fprintf(stderr, "DropBox: invalid NSBorderType: %d\n", borderType);
+        fprintf(stderr, "DropBox: invalid NSBorderType: %u\n", (unsigned)borderType);
         return;
     }
 
