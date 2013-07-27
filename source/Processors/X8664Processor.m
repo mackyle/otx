@@ -2610,6 +2610,10 @@
 
     *outFound   = 0;
 
+    if (!inHaystack) {
+        return foundList;
+    }
+
     // Loop thru haystack
     for (current = inHaystack;
          current <= inHaystack + inHaystackLength - 4;
