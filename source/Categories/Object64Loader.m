@@ -670,10 +670,10 @@
 
     dyld_data_section*  data    = (dyld_data_section*)iDyldSect.contents;
 
-    iAddrDyldStubBindingHelper  = (uint32_t)(data->dyld_stub_binding_helper);
+    iAddrDyldStubBindingHelper  = (uintptr_t)(data->dyld_stub_binding_helper);
 
     if (iSwapped)
-        iAddrDyldStubBindingHelper  = OSSwapInt32(iAddrDyldStubBindingHelper);
+        iAddrDyldStubBindingHelper  = OSSwapIntPtr(iAddrDyldStubBindingHelper);
 }
 
 //  loadCFStringSection:

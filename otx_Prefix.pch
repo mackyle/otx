@@ -18,6 +18,12 @@
 #define MAC_OS_X_VERSION_10_6 1060
 #endif
 
+#ifdef __LP64__
+    #define OSSwapIntPtr(x) OSSwapInt64(x)
+#else
+    #define OSSwapIntPtr(x) OSSwapInt32(x)
+#endif
+
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
     #import <ApplicationServices/ApplicationServices.h>

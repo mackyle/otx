@@ -163,10 +163,10 @@ enum {
     char*               iRAMFile;               // exe in RAM
     NSUInteger          iRAMFileSize;
     NSString*           iOutputFilePath;
-    uint32_t              iFileArchMagic;         // 0xCAFEBABE etc.
+    uint32_t            iFileArchMagic;         // 0xCAFEBABE etc.
     BOOL                iExeIsFat;
     ThunkInfo*          iThunks;                // x86 only
-    uint32_t              iNumThunks;             // x86 only
+    uint32_t            iNumThunks;             // x86 only
     TextFieldWidths     iFieldWidths;
     ProcOptions         iOpts;
     NSTask*             iCPFiltTask;
@@ -177,17 +177,17 @@ enum {
     uint32_t            iMissedSelectorCount;
 
     // FunctionInfo stuff
-    uint32_t              iCurrentGenericFuncNum;
+    uint32_t            iCurrentGenericFuncNum;
 
     // Symbols stuff
-    uint32_t       iStringTableOffset;
+    uint32_t            iStringTableOffset;
 
     // dyld stuff
-    uint32_t      iAddrDyldStubBindingHelper;
-    uint32_t      iAddrDyldFuncLookupPointer;
+    uintptr_t           iAddrDyldStubBindingHelper;
+    uintptr_t           iAddrDyldFuncLookupPointer;
 
-    BOOL        iEnteringNewBlock;
-    SInt64      iCurrentFuncInfoIndex;
+    BOOL                iEnteringNewBlock;
+    SInt64              iCurrentFuncInfoIndex;
 
     // saved strings
     char        iArchString[MAX_ARCH_STRING_LENGTH];    // "ppc", "i386" etc.
